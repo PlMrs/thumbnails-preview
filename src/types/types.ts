@@ -1,7 +1,7 @@
 export type TgetVideo = () => HTMLVideoElement;
 
-export type TcreatePlayerContainer = () => HTMLDivElement
+export type TcreatePlayerContainer = () => HTMLDivElement;
 
-export  interface Props {
+export interface Props {
   video: HTMLVideoElement;
 }

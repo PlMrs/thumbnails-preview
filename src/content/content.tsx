@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { getVideo } from "../utils/functions";
+import { getVideo } from '../utils/functions';
 import { VideoPlayer } from '../components/VideoPlayer';
 import { DomKeys } from '../utils/constants';
 
@@ -10,13 +10,13 @@ const init = () => {
   if (!video) return;
 
   video.controls = false;
-  
+
   const originalParent = video.parentElement;
 
   if (video && !document.getElementById(DomKeys.PLAYERCONTAINER)) {
     const rootContainer = document.createElement('div');
     rootContainer.id = 'root';
-    
+
     originalParent?.appendChild(rootContainer);
 
     const root = createRoot(rootContainer);

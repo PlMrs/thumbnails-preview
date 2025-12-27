@@ -27,10 +27,10 @@ export const useVideoStore = create<VideoState>((set) => ({
   setIsPlaying: (playing) => set({ isPlaying: playing }),
   setIsFullscreen: (fullscreen) => set({ isFullscreen: fullscreen }),
   setProgress: (percent) => set({ progress: percent }),
-  updatePreview: (show, pos, time) => 
-    set((state) => ({ 
-      showPreview: show, 
-      previewPos: pos, 
-      previewTime: time ?? state.previewTime 
+  updatePreview: (show, pos, time) =>
+    set((state) => ({
+      showPreview: show,
+      previewPos: pos,
+      previewTime: time ?? state.previewTime,
     })),
 }));
