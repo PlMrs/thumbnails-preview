@@ -24,7 +24,6 @@ video {
     position: relative;
     display: block;
     width: 100%;
-    /* height: 100%;; */
     background: black;
     overflow: hidden;
     max-width: 75vw;
@@ -32,36 +31,32 @@ video {
 
 #video-slot, #video-slot video {
     width: 100%;
-    height: 100%; /* Force la vidéo à remplir le slot */
+    height: 100%;
     display: block;
-    object-fit: contain; /* Garde le ratio sans déformer */
+    object-fit: contain;
 }
 
-/* Cible le conteneur lorsqu'il est l'élément en plein écran */
 #player-container:fullscreen {
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: center; /* Centre la vidéo verticalement */
-    align-items: center;     /* Centre la vidéo horizontalement */
+    justify-content: center;
+    align-items: center;
     background-color: black;
 }
 
-/* Force la vidéo à remplir le conteneur en plein écran */
 #player-container:fullscreen #video-slot {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Garde le ratio original de l'image */
+    object-fit: contain;
 }
 
-/* Assure que les contrôles restent en bas en plein écran */
 #player-container:fullscreen #controls {
     position: absolute;
     bottom: 0;
-    z-index: 2147483647; /* Priorité maximale pour rester au-dessus */
+    z-index: 2147483647;
 }
 
-/* Supprime le fond par défaut du navigateur qui cause parfois la barre grise/noire */
 #player-container::backdrop {
     background-color: black;
 }
@@ -82,16 +77,14 @@ video {
 }
 
 #controls:hover {
-    opacity: 1; /* Affiche les contrôles au survol du lecteur */
+    opacity: 1;
 }
 
-/* 3. Affichage piloté par React */
 .user-active #controls {
     opacity: 1;
     pointer-events: auto;
 }
 
-/* 4. Optionnel : cacher le curseur pour l'immersion */
 .user-inactive #video-slot {
     cursor: none !important;
 }
@@ -112,12 +105,11 @@ video {
 
 #progress-bar {
     height: 100%;
-    background: #27B4F5; /* Rouge YouTube */
+    background: #27B4F5;
     width: 0%;
     border-radius: 9999px;
 }
 
-/* La boîte de preview */
 #preview-box {
     position: absolute;
     bottom: 20px;
