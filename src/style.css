@@ -1,6 +1,17 @@
 body {
     height: 100vh;
     overflow:hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #121212;
 }
 
 video {
@@ -11,27 +22,78 @@ video {
 
 #player-container {
     position: relative;
-    display: inline-block;
+    display: block;
     width: 100%;
+    /* height: 100%;; */
     background: black;
+    overflow: hidden;
+    max-width: 75vw;
+}
+
+#video-slot, #video-slot video {
+    width: 100%;
+    height: 100%; /* Force la vidéo à remplir le slot */
+    display: block;
+    object-fit: contain; /* Garde le ratio sans déformer */
+}
+
+/* Cible le conteneur lorsqu'il est l'élément en plein écran */
+#player-container:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* Centre la vidéo verticalement */
+    align-items: center;     /* Centre la vidéo horizontalement */
+    background-color: black;
+}
+
+/* Force la vidéo à remplir le conteneur en plein écran */
+#player-container:fullscreen #video-slot {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Garde le ratio original de l'image */
+}
+
+/* Assure que les contrôles restent en bas en plein écran */
+#player-container:fullscreen #controls {
+    position: absolute;
+    bottom: 0;
+    z-index: 2147483647; /* Priorité maximale pour rester au-dessus */
+}
+
+/* Supprime le fond par défaut du navigateur qui cause parfois la barre grise/noire */
+#player-container::backdrop {
+    background-color: black;
 }
 
 #controls {
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace !important;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 10;
     height: 50px;
     background: linear-gradient(transparent, rgba(0,0,0,0.7));
     display: flex;
-    align-items: flex-end;
-    padding: 0 10px 10px 10px;
-    opacity: 0; /* Cache les contrôles par défaut */
+    align-items: center;
+    opacity: 0;
     transition: opacity 0.3s;
 }
 
-#player-container:hover #controls {
+#controls:hover {
     opacity: 1; /* Affiche les contrôles au survol du lecteur */
+}
+
+/* 3. Affichage piloté par React */
+.user-active #controls {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 4. Optionnel : cacher le curseur pour l'immersion */
+.user-inactive #video-slot {
+    cursor: none !important;
 }
 
 #progress-container {
@@ -41,6 +103,7 @@ video {
     cursor: pointer;
     position: relative;
     transition: height 0.1s;
+    border-radius: 9999px;
 }
 
 #progress-container:hover {
@@ -49,8 +112,9 @@ video {
 
 #progress-bar {
     height: 100%;
-    background: #ff0000; /* Rouge YouTube */
+    background: #27B4F5; /* Rouge YouTube */
     width: 0%;
+    border-radius: 9999px;
 }
 
 /* La boîte de preview */
@@ -63,6 +127,7 @@ video {
     background: black;
     display: none;
     pointer-events: none;
+    flex-direction: column;
 }
 
 #preview-video {
@@ -77,4 +142,14 @@ video {
     font-family: Arial, sans-serif;
     font-size: 12px;
     padding: 2px;
+}
+
+#time-left {
+    padding: 5px 10px;
+    color: white;
+    font-size: 14px;
+}
+
+.separator, .total-time {
+    color: #c2c2c2;
 }

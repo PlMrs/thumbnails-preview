@@ -5,5 +5,6 @@ export enum DomKeys {
     PROGRESSBAR = 'progress-bar',
     PREVIEWBOX = 'preview-box',
     PREVIEWVIDEO = 'preview-video',
-    PREVIEWTIME = 'preview-time'
+    PREVIEWTIME = 'preview-time',
+    TIMELEFT = 'time-left'
 }
