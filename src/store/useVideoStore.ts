@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface VideoState {
+export interface VideoState {
   isPlaying: boolean;
   isFullscreen: boolean;
   progress: number;
