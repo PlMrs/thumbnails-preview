@@ -148,3 +148,15 @@ video {
 .total-time {
   color: #c2c2c2;
 }
+
+#play-pause-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
