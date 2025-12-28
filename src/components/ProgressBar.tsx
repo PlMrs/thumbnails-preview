@@ -59,7 +59,7 @@ export const ProgressBar = ({ video }: Props) => {
       onClick={handleSeek}
       style={{ position: 'relative' }}
     >
-      <div id={DomKeys.PROGRESSBAR} style={{ width: `${progress}%` }} />
+      <div id={DomKeys.PROGRESSBAR} style={{ transform: `scaleX(${progress / 100})` }} />
 
       <div
         id={DomKeys.PREVIEWBOX}
