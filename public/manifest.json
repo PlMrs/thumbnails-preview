@@ -5,7 +5,7 @@
   "description": "An improved video player for local video files with enhanced controls and features.",
   "browser_specific_settings": {
     "gecko": {
-      "id": "better-local-video-player@trg69",
+      "id": "better-local-video-player-new@trg69",
       "data_collection_permissions": {
         "required": ["none"]
       }
