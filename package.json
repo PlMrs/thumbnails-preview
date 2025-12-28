@@ -1,7 +1,7 @@
 {
-  "name": "thumbnail-preview-v2",
+  "name": "better-local-video-player",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\"",
