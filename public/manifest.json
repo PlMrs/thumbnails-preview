@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Local Video Preview Hover",
+  "name": "Better Local Video Player",
   "version": "1.0",
-  "description": "Shows a thumbnail preview when hovering over the progress bar of local video files.",
+  "description": "An improved video player for local video files with enhanced controls and features.",
   "browser_specific_settings": {
     "gecko": {
-      "id": "video-preview-hover@trg69",
+      "id": "better-local-video-player@trg69",
       "data_collection_permissions": {
         "required": ["none"]
       }
