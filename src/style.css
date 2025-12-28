@@ -163,3 +163,38 @@ video {
   align-items: center;
   justify-content: center;
 }
+
+.skip-badge {
+  position: absolute;
+  top: -40px; /* Ajuste selon la taille de tes contrôles */
+  transform: translateX(-50%);
+  background: rgba(39, 180, 245, 0.9); /* Ton bleu */
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  animation: skipPop 0.8s ease-out forwards;
+}
+
+@keyframes skipPop {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px) scale(0.5);
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1.1);
+  }
+  80% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-15px);
+  }
+}

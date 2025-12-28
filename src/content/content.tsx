@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { getVideo } from '@/utils/functions';
+import { getStorageKey, getVideo, saveVideoProgress, syncVideoProgress } from '@/utils/functions';
 import { VideoPlayer } from '@/components/VideoPlayer';
 import { DomKeys } from '@/utils/constants';
 
@@ -10,6 +10,21 @@ const init = () => {
   if (!video) return;
 
   video.controls = false;
+
+  syncVideoProgress(video);
+
+  const loadTimestamp = Date.now();
+  window.addEventListener('beforeunload', () => {
+    const now = Date.now();
+    const secondsElapsedSinceLoad = (now - loadTimestamp) / 1000;
+    if (secondsElapsedSinceLoad > 5) {
+      if (video.currentTime < video.duration - 2) {
+        saveVideoProgress(video.currentTime);
+      } else {
+        localStorage.removeItem(getStorageKey());
+      }
+    }
+  });
 
   const originalParent = video.parentElement;
 

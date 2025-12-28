@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import type { Props } from '@/types/types';
 import { DomKeys } from '@/utils/constants';
+import type { FC } from 'react';
 
-export const TimeLeft = ({ video }: Props) => {
+export const TimeLeft: FC<Props> = ({ video }) => {
   const [currentTime, setCurrentTime] = useState(0);
 
   const handleTimeUpdate = () => setCurrentTime(video.currentTime);

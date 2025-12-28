@@ -1,8 +1,9 @@
 import { useVideoStore } from '@/store/useVideoStore';
 import type { Props } from '@/types/types';
 import { togglePlay } from '@/utils/functions';
+import type { FC } from 'react';
 
-export const PlayPauseButton = ({ video }: Props) => {
+export const PlayPauseButton: FC<Props> = ({ video }: Props) => {
   const { isPlaying, setIsPlaying } = useVideoStore();
 
   return (

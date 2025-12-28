@@ -8,6 +8,8 @@ export interface VideoState {
   previewPos: number;
   showPreview: boolean;
   userActive: boolean;
+  timeSkip?: { type: '+' | '-'; id: number };
+  setTimeSkip: (time: '+' | '-') => void;
   setIsPlaying: (playing: boolean) => void;
   setIsFullscreen: (fullscreen: boolean) => void;
   setProgress: (percent: number) => void;
@@ -23,6 +25,8 @@ export const useVideoStore = create<VideoState>((set) => ({
   previewPos: 0,
   showPreview: false,
   userActive: false,
+  timeSkip: undefined,
+  setTimeSkip: (time) => set({ timeSkip: { type: time, id: Date.now() } }),
   setUserActive: (active) => set({ userActive: active }),
   setIsPlaying: (playing) => set({ isPlaying: playing }),
   setIsFullscreen: (fullscreen) => set({ isFullscreen: fullscreen }),

@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
+import type { FC } from 'react';
 import type { Props } from '@/types/types';
 import { Controls } from './Controls';
 import { DomKeys } from '@/utils/constants';
 import { useVideoStore } from '@/store/useVideoStore';
 import { togglePlay } from '@/utils/functions';
 
-export const VideoPlayer = ({ video }: Props) => {
+export const VideoPlayer: FC<Props> = ({ video }) => {
   const videoSlotRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 

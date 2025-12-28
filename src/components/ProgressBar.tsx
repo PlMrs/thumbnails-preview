@@ -1,10 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import type { FC, MouseEvent } from 'react';
 import { DomKeys } from '@/utils/constants';
 import { useVideoStore } from '@/store/useVideoStore';
 import type { Props } from '@/types/types';
+import { saveVideoProgress } from '@/utils/functions';
+import { SkipToast } from './SkipToast';
 
-export const ProgressBar = ({ video }: Props) => {
-  const { progress, previewTime, previewPos, showPreview, setProgress, updatePreview } =
+export const ProgressBar: FC<Props> = ({ video }) => {
+  const [displaySkip, setDisplaySkip] = useState<{ val: string; id: number } | null>(null);
+
+  const { progress, previewTime, previewPos, showPreview, timeSkip, setProgress, updatePreview } =
     useVideoStore();
 
   const progressBarRef = useRef<HTMLDivElement>(null);
@@ -16,11 +21,24 @@ export const ProgressBar = ({ video }: Props) => {
   };
 
   useEffect(() => {
+    if (!timeSkip) return;
+
+    const label = timeSkip.type === '+' ? '+5s' : '-5s';
+    setDisplaySkip({ val: label, id: Date.now() });
+
+    const timer = setTimeout(() => {
+      setDisplaySkip(null);
+    }, 800);
+
+    return () => clearTimeout(timer);
+  }, [timeSkip]);
+
+  useEffect(() => {
     video.addEventListener('timeupdate', handleTimeUpdate);
     return () => video.removeEventListener('timeupdate', handleTimeUpdate);
   }, [video, setProgress]);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handleMouseMove = (e: MouseEvent) => {
     if (!progressBarRef.current) return;
 
     const rect = progressBarRef.current.getBoundingClientRect();
@@ -43,11 +61,12 @@ export const ProgressBar = ({ video }: Props) => {
     updatePreview(true, x, `${mins}:${secs}`);
   };
 
-  const handleSeek = (e: React.MouseEvent) => {
+  const handleSeek = (e: MouseEvent) => {
     if (!progressBarRef.current) return;
     const rect = progressBarRef.current.getBoundingClientRect();
     const percent = (e.clientX - rect.left) / rect.width;
     video.currentTime = percent * video.duration;
+    saveVideoProgress(video.currentTime);
   };
 
   return (
@@ -60,6 +79,11 @@ export const ProgressBar = ({ video }: Props) => {
       style={{ position: 'relative' }}
     >
       <div id={DomKeys.PROGRESSBAR} style={{ transform: `scaleX(${progress / 100})` }} />
+
+      {/* LA BULLE ANIMÉE */}
+      {displaySkip && (
+        <SkipToast key={displaySkip.id} value={displaySkip.val} progress={progress} />
+      )}
 
       <div
         id={DomKeys.PREVIEWBOX}

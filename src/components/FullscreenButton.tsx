@@ -1,8 +1,9 @@
 import { useVideoStore } from '@/store/useVideoStore';
 import { DomKeys } from '@/utils/constants';
 import { useEffect } from 'react';
+import type { FC } from 'react';
 
-export const FullscreenButton = () => {
+export const FullscreenButton: FC = () => {
   const { isFullscreen, setIsFullscreen } = useVideoStore();
 
   const handleFullscreenChange = () => {
