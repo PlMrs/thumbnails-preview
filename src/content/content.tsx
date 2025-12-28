@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
-import { getVideo } from '../utils/functions';
-import { VideoPlayer } from '../components/VideoPlayer';
-import { DomKeys } from '../utils/constants';
+import { getVideo } from '@/utils/functions';
+import { VideoPlayer } from '@/components/VideoPlayer';
+import { DomKeys } from '@/utils/constants';
 
 import '@/style.css';
 
