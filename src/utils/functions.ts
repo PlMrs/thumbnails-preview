@@ -63,12 +63,10 @@ export const getStorageKey = () => `video_progress_${window.location.href}`;
 
 export const syncVideoProgress = (video: HTMLVideoElement) => {
   const storageKey = getStorageKey();
-  // 1. REPRISE : On positionne la vidéo avant le rendu React
   const savedTime = localStorage.getItem(storageKey);
   if (savedTime) {
     const time = parseFloat(savedTime);
 
-    // On utilise loadedmetadata pour être sûr que la durée est connue
     video.addEventListener(
       'loadedmetadata',
       () => {
@@ -77,7 +75,6 @@ export const syncVideoProgress = (video: HTMLVideoElement) => {
       { once: true }
     );
 
-    // Sécurité si les métadonnées sont déjà là
     if (video.readyState >= 1) {
       video.currentTime = time;
     }

@@ -7,7 +7,7 @@ import '@/style.css';
 
 const init = () => {
   const video = getVideo();
-  if (!video) return;
+  if (!video) throw new Error('No video element found on the page.');
 
   video.controls = false;
 
@@ -28,7 +28,7 @@ const init = () => {
 
   const originalParent = video.parentElement;
 
-  if (video && !document.getElementById(DomKeys.PLAYERCONTAINER)) {
+  if (!document.getElementById(DomKeys.PLAYERCONTAINER)) {
     const rootContainer = document.createElement('div');
     rootContainer.id = 'root';
 
